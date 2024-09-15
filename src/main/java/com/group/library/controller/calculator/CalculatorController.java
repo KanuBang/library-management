@@ -1,9 +1,7 @@
 package com.group.library.controller.calculator;
 
-import com.group.library.dto.request.CalculatorAddRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.group.library.dto.request.CalculatorRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CalculatorController {
@@ -14,7 +12,12 @@ public class CalculatorController {
     }
 
     @GetMapping("/addDto")
-    public int addDto(CalculatorAddRequest calculatorAddRequest) {
+    public int addDto(CalculatorRequest calculatorAddRequest) {
         return calculatorAddRequest.getNumber1() + calculatorAddRequest.getNumber2();
+    }
+
+    @PostMapping("/multiply")
+    public int multiply(@RequestBody CalculatorRequest request) {
+        return request.getNumber1() * request.getNumber2();
     }
 }
