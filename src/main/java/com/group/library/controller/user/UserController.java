@@ -2,12 +2,10 @@ package com.group.library.controller.user;
 
 import com.group.library.dto.response.UserResponse;
 import com.group.library.dto.user.UserCreateRequest;
+import com.group.library.dto.user.UserUpdateRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.group.library.domain.user.User;
 
 import java.sql.ResultSet;
@@ -45,5 +43,19 @@ public class UserController {
                 return new UserResponse(id, user);
             }
         });
+    }
+
+    // 유저 삭제
+    @DeleteMapping("/user")
+    public void deleteUser(@RequestParam String name) {
+        String sql = "DELETE FROM user WHERE name = ?";
+        jdbcTemplate.update(sql, name);
+    }
+
+    // 유저 업데이트
+    @PutMapping("/user")
+    public void updateUser(@RequestBody UserUpdateRequest request) {
+        String sql = "UPDATE user SET name = ? WHERE id = ?";
+        jdbcTemplate.update(sql,request.getName(),request.getId());
     }
 }
