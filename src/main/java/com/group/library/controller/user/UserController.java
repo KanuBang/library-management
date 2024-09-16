@@ -18,8 +18,8 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    public UserController(JdbcTemplate jdbcTemplate) {
-        this.userService = new UserService(jdbcTemplate);
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // 유저 등록
