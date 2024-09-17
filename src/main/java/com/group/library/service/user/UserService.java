@@ -5,6 +5,7 @@ import com.group.library.dto.response.UserResponse;
 import com.group.library.dto.user.UserCreateRequest;
 import com.group.library.dto.user.UserUpdateRequest;
 import com.group.library.repository.user.UserRepository;
+import com.group.library.service.fruit.FruitService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import java.util.List;
 //@Service
 public class UserService {
     private final UserRepository userRepository;
-
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
