@@ -1,22 +1,15 @@
 package com.group.library.service.user;
 
-import com.group.library.domain.user.User;
 import com.group.library.dto.response.UserResponse;
 import com.group.library.dto.user.UserCreateRequest;
 import com.group.library.dto.user.UserUpdateRequest;
-import com.group.library.repository.user.UserRepository;
-import com.group.library.service.fruit.FruitService;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Service;
+import com.group.library.repository.user.UserJdbcRepository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 //@Service
-public class UserService {
-    private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+public class UserService1 {
+    private final UserJdbcRepository userRepository;
+    public UserService1(UserJdbcRepository userRepository) {
         this.userRepository = userRepository;
     }
 

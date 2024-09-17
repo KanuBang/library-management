@@ -1,28 +1,23 @@
 package com.group.library.controller.user;
 
+import com.group.library.domain.user.User;
 import com.group.library.dto.response.UserResponse;
 import com.group.library.dto.user.UserCreateRequest;
 import com.group.library.dto.user.UserUpdateRequest;
 import com.group.library.service.fruit.FruitService;
-import com.group.library.service.user.UserService;
-import org.slf4j.Logger;
+import com.group.library.service.user.UserService1;
+import com.group.library.service.user.UserService2;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
-import com.group.library.domain.user.User;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class UserController {
-    private final UserService userService;
+    private final UserService2 userService;
     private final FruitService fruitService;
     private final FruitService fruitService1;
-    public UserController(UserService userService,
+    public UserController(UserService2 userService,
                           @Qualifier("appleService") FruitService fruitService,
                           @Qualifier("main") FruitService fruitService1
     ) {
@@ -30,8 +25,8 @@ public class UserController {
         this.userService = userService;
         this.fruitService = fruitService;
         this.fruitService1 = fruitService1;
-        System.out.println(fruitService.toString());
-        System.out.println(fruitService1.toString());
+        //System.out.println(fruitService.toString());
+        //System.out.println(fruitService1.toString());
 
     }
 
@@ -63,5 +58,11 @@ public class UserController {
     @GetMapping("/user/error-test")
     public void errorTest(){
         throw new IllegalArgumentException();
+    }
+
+    // 나이 범위
+    @GetMapping("/user/age")
+    public List<User> findUserByAgeRange(@RequestParam("startAge") int start, @RequestParam("endAge") int end){
+        return userService.findUserByAgeRange(start,end);
     }
 }

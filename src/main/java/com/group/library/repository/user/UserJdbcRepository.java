@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-//@Repository
-public class UserRepository {
+
+@Repository
+public class UserJdbcRepository {
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -43,8 +44,9 @@ public class UserRepository {
             @Override
             public UserResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
                 long id = rs.getLong("id");
-                User user = new User(rs.getString("name"), rs.getInt("age"));
-                return new UserResponse(id, user);
+                String name = rs.getString("name");
+                int age = rs.getInt("age");
+                return new UserResponse(id, name, age);
             }
         });
     }
