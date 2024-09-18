@@ -51,7 +51,7 @@ public class BookService {
                 .orElseThrow(IllegalArgumentException::new);
 
         // 유저가 책을 대출한다는 사실을 DB에 저장
-        userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
+        userLoanHistoryRepository.save(new UserLoanHistory(user, book.getName()));
     }
 
     // 책 반납
