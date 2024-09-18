@@ -41,11 +41,11 @@ public class UserService2 {
 
     // 회원 삭제
     public void deleteUser(String name){
-        User user = userRepository.findByName(name);
-        if (user == null) {
+        Optional<User> user = userRepository.findByName(name);
+        if (user.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        userRepository.delete(user);
+        userRepository.delete(user.get());
     }
 
     // 회원 나이 범위
