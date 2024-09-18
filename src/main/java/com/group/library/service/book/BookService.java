@@ -7,6 +7,7 @@ import com.group.library.domain.user.loanHistory.UserLoanHistory;
 import com.group.library.domain.user.loanHistory.UserLoanHistoryRepository;
 import com.group.library.dto.book.BookLoanRequest;
 import com.group.library.dto.book.BookCreateRequest;
+import com.group.library.dto.book.BookReturnRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.group.library.domain.user.User;
@@ -53,5 +54,12 @@ public class BookService {
         userLoanHistoryRepository.save(new UserLoanHistory(user.getId(), book.getName()));
     }
 
-
+    // 책 반납
+    @Transactional
+    public void returnBook(BookReturnRequest request) {
+        User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
+        UserLoanHistory history = userLoanHistoryRepository.findByUserIdAndBookName(user.getId(), request.getBookName())
+                .orElseThrow(IllegalArgumentException::new);
+        history.doReturn(); //반납, @Transactional -> 영속성 컨텍스트 -> 변경 감지 -> 쿼리 발생
+    }
 }

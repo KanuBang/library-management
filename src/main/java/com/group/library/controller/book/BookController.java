@@ -30,4 +30,11 @@ public class BookController {
         bookService.loanBook(request);
     }
 
+    // 책 반납
+    @PutMapping("/book/return")
+    public void returnBook(@RequestBody BookReturnRequest request) {
+        bookService.returnBook(request);
+    }
+
+
 }
