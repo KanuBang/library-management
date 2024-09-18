@@ -6,6 +6,7 @@ import com.group.library.dto.response.UserResponse;
 import com.group.library.dto.user.UserCreateRequest;
 import com.group.library.dto.user.UserUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class UserService2 {
     }
 
     // 회원 삭제
+    @Transactional
     public void deleteUser(String name){
         Optional<User> user = userRepository.findByName(name);
         if (user.isEmpty()) {
