@@ -2,8 +2,12 @@ package com.group.library.domain.user.loanHistory;
 
 import com.group.library.domain.user.User;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class UserLoanHistory {
 
     @Id
@@ -16,22 +20,9 @@ public class UserLoanHistory {
     private String bookName;
     private boolean isReturn;
 
-    public UserLoanHistory() {
-    }
-
     public UserLoanHistory(User user, String bookName) {
         this.user = user;
         this.bookName = bookName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {return user;}
-
-    public String getBookName() {
-        return bookName;
     }
 
     public boolean isReturn() {

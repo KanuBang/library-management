@@ -1,22 +1,13 @@
 package com.group.library.dto.book;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class BookReturnRequest {
     private String userName;
     private String bookName;
-
-    public BookReturnRequest() {
-    }
-
-    public BookReturnRequest(String userName, String bookName) {
-        this.userName = userName;
-        this.bookName = bookName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
 }

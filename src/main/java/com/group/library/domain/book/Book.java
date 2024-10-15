@@ -1,8 +1,12 @@
 package com.group.library.domain.book;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class Book {
 
     @Id
@@ -12,7 +16,6 @@ public class Book {
     @Column(nullable = false)
     private String name;
 
-    protected Book() { }
     public Book(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(String.format("잘못된 값"));
@@ -20,11 +23,4 @@ public class Book {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
