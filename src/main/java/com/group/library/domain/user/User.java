@@ -2,11 +2,15 @@ package com.group.library.domain.user;
 
 import com.group.library.domain.user.loanHistory.UserLoanHistory;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +21,6 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLoanHistory> userHistories = new ArrayList<>();
-    protected User() {
-
-    }
 
     public User(String name, Integer age) {
 
@@ -31,22 +32,12 @@ public class User {
         this.age = age;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
+    // 사용자 이름 수정 로직
     public void updateName(String name) {
         this.name = name;
     }
 
+    // 책 대출 로직
     public void loanBook(String bookName) {
         this.userHistories.add(new UserLoanHistory(this, bookName));
     }

@@ -1,22 +1,14 @@
 package com.group.library.dto.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class UserCreateRequest {
     private String name;
     private Integer age;
 
-    public UserCreateRequest(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
 }
