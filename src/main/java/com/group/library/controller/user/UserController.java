@@ -7,28 +7,17 @@ import com.group.library.dto.user.UserUpdateRequest;
 import com.group.library.service.fruit.FruitService;
 import com.group.library.service.user.UserService1;
 import com.group.library.service.user.UserService2;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class UserController {
+
     private final UserService2 userService;
-    private final FruitService fruitService;
-    private final FruitService fruitService1;
-    public UserController(UserService2 userService,
-                          @Qualifier("appleService") FruitService fruitService,
-                          @Qualifier("main") FruitService fruitService1
-    ) {
-
-        this.userService = userService;
-        this.fruitService = fruitService;
-        this.fruitService1 = fruitService1;
-        //System.out.println(fruitService.toString());
-        //System.out.println(fruitService1.toString());
-
-    }
 
     // 유저 등록
     @PostMapping("/user")

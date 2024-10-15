@@ -1,5 +1,8 @@
 package com.group.library.dto.user;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class UserCreateRequest {
     private String name;
     private Integer age;
