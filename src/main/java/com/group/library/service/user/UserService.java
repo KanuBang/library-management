@@ -13,10 +13,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService2 {
+public class UserService {
     private final UserRepository userRepository;
 
-    public UserService2(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
